@@ -7,6 +7,7 @@
 //
 
 #import "HYViewController.h"
+#import <HYBaseTool/HYBaseTool.h>
 
 @interface HYViewController ()
 
