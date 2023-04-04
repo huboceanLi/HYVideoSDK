@@ -47,4 +47,9 @@ TODO: Add long description of the pod here.
   #s.dependency 'HYBaseTool'
   s.dependency "QMUIKit"
   s.dependency "Masonry"
+  s.dependency "SJVideoPlayer"
+  s.dependency "SJUIKit/SQLite3"
+  s.dependency "SJMediaCacheServer"
+
+  
 end

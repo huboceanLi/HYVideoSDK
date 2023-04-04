@@ -32,6 +32,15 @@
     ],
     "Masonry": [
 
+    ],
+    "SJVideoPlayer": [
+
+    ],
+    "SJUIKit/SQLite3": [
+
+    ],
+    "SJMediaCacheServer": [
+
     ]
   },
   "swift_version": "5.0"

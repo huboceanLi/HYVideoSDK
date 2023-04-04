@@ -18,6 +18,7 @@
 #import "HYVideoHeader.h"
 #import "HYVideoCenterViewController.h"
 #import "HYVideoHomeViewController.h"
+#import "HYVideoDetailViewController.h"
 #import "HYVideoRankViewController.h"
 
 FOUNDATION_EXPORT double HYVideoSDKVersionNumber;

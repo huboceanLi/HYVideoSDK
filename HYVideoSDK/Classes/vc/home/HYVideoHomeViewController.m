@@ -7,6 +7,7 @@
 //
 
 #import "HYVideoHomeViewController.h"
+#import "HYVideoDetailViewController.h"
 
 @interface HYVideoHomeViewController ()
 
@@ -23,16 +24,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setTitle:@"播放视频" forState:0];
+    [btn setTitleColor:UIColor.whiteColor forState:0];
+    btn.backgroundColor = UIColor.redColor;
+    btn.frame = CGRectMake(100, 200, 100, 40);
+    [self.view addSubview:btn];
+    [btn addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
+    
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)buttonClick {
+    HYVideoDetailViewController *vc = [HYVideoDetailViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
-*/
 
 @end
