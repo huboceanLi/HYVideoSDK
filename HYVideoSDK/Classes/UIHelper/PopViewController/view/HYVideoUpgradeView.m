@@ -31,9 +31,9 @@
     [self addSubview:bgImageView];
     self.bgImageView = bgImageView;
     
-    self.imageH = img.size.height * (SCREEN_WIDTH - 100) / img.size.width;
+    self.imageH = img.size.height * (SCREEN_WIDTH - 140) / img.size.width;
     
-    bgImageView.frame = CGRectMake(0, 0, SCREEN_WIDTH - 100, self.imageH);
+    bgImageView.frame = CGRectMake(0, 0, SCREEN_WIDTH - 140, self.imageH);
     
     self.bgView = [UIView new];
     self.bgView.backgroundColor = UIColor.whiteColor;
@@ -56,11 +56,10 @@
     [self.upgradeButton setTitleColor:UIColor.whiteColor forState:0];
     self.upgradeButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
     self.upgradeButton.layer.cornerRadius = 22;
-    self.upgradeButton.layer.masksToBounds = YES;
     self.upgradeButton.layer.shadowRadius = 10;
-    self.upgradeButton.backgroundColor = UIColor.blueColor;
+    self.upgradeButton.backgroundColor = UIColor.mainColor;
     self.upgradeButton.layer.shadowOffset = CGSizeMake(0, 5);
-    self.upgradeButton.layer.shadowColor = UIColor.blueColor.CGColor;
+    self.upgradeButton.layer.shadowColor = UIColor.mainColor.CGColor;
     self.upgradeButton.layer.shadowOpacity = 1.0;
     
 
@@ -70,10 +69,10 @@
 {
     NSString *str = @"比如我本来安装完CocoaPods 1.0.0版,但发现它实现跟先前还是差别满大的,决定降回0.39这个比较稳定版本;就可以用命令先删除本地的CocoaPods版本,再指定安装特定版本。";
     self.tipLabel.text = str;
-    CGFloat h = [str heightForFont:[UIFont systemFontOfSize:14] width:SCREEN_WIDTH - 140];
-    self.tipLabel.frame = CGRectMake(20, 20, SCREEN_WIDTH - 140, h);
-    self.upgradeButton.frame = CGRectMake((SCREEN_WIDTH - 120 - 100)/2, CGRectGetMaxY(self.tipLabel.frame) + 40, 120, 44);
-    self.bgView.frame = CGRectMake(0, CGRectGetMaxY(self.bgImageView.frame) - 6, SCREEN_WIDTH - 100, h + 20 + 40 + 20 + 44 + 6);
+    CGFloat h = [str heightForFont:[UIFont systemFontOfSize:14] width:SCREEN_WIDTH - 180];
+    self.tipLabel.frame = CGRectMake(20, 20, SCREEN_WIDTH - 180, h);
+    self.upgradeButton.frame = CGRectMake((SCREEN_WIDTH - 120 - 140)/2, CGRectGetMaxY(self.tipLabel.frame) + 40, 120, 44);
+    self.bgView.frame = CGRectMake(0, CGRectGetMaxY(self.bgImageView.frame) - 6, SCREEN_WIDTH - 140, h + 20 + 40 + 20 + 44 + 6);
     return h + self.imageH + 20 + 40 + 20 + 44 + 6;
 }
 

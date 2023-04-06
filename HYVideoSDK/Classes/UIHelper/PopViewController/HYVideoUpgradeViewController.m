@@ -27,7 +27,7 @@
 - (void)initSubViews {
     [super initSubViews];
     
-    UIView * contentView = [[UIView alloc] initWithFrame:CGRectMake(50, 0, SCREEN_WIDTH - 100, 400)];
+    UIView * contentView = [[UIView alloc] initWithFrame:CGRectMake(50, 0, SCREEN_WIDTH - 140, 400)];
     contentView.backgroundColor = UIColor.clearColor;
     self.contentView = contentView;
     
