@@ -1,14 +1,16 @@
 PODS:
   - CocoaAsyncSocket (7.6.5)
-  - HYBaseTool (1.0.1):
+  - HYBaseTool (1.0.2):
     - Masonry
     - QMUIKit
   - HYVideoSDK (0.0.1):
+    - HYBaseTool (~> 1.0.2)
     - Masonry
     - QMUIKit
     - SJMediaCacheServer
     - SJUIKit/SQLite3
     - SJVideoPlayer
+    - YYKit
   - Masonry (1.1.0)
   - QMUIKit (4.3.0):
     - QMUIKit/QMUIComponents (= 4.3.0)
@@ -390,10 +392,12 @@ PODS:
     - SJVideoPlayer/Common
   - SJVideoPlayer/ResourceLoader (3.4.3):
     - SJBaseVideoPlayer (>= 3.7.5)
+  - YYKit (1.0.9):
+    - YYKit/no-arc (= 1.0.9)
+  - YYKit/no-arc (1.0.9)
   - YYModel (1.0.4)
 
 DEPENDENCIES:
-  - HYBaseTool (= 1.0.1)
   - HYVideoSDK (from `../`)
 
 SPEC REPOS:
@@ -406,6 +410,7 @@ SPEC REPOS:
     - SJMediaCacheServer
     - SJUIKit
     - SJVideoPlayer
+    - YYKit
     - YYModel
 
 EXTERNAL SOURCES:
@@ -414,16 +419,17 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
-  HYBaseTool: 471ed641879a875b6fde1df02b36dc848122ea87
-  HYVideoSDK: ff88b1d7355657a071118d180ac59ce22b0c9023
+  HYBaseTool: df77c5b137a4069be0f71fa90cd3c287fbe2caa7
+  HYVideoSDK: b4bcd9a55aa78d6b7f6cf1e1d6dfddc6bcf037a6
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   QMUIKit: 67888be9aa0ee0b12b8a219fcea2eec900afd841
   SJBaseVideoPlayer: f15debaa8c1e27b63bdefc8caeec515e9c71d079
   SJMediaCacheServer: 95bebce42f281fccaff25a5e8284022478ff7ba5
   SJUIKit: a40111941e408cc17d4c1c23495aa92999e814b0
   SJVideoPlayer: 4f09814f58522e0975cb2dccfda925f6c8643467
+  YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 2dd788fb9139777bb258a0e2ce770a39fe79c57b
+PODFILE CHECKSUM: a9efd4e7694205e0f2cd624bac74e8057e7f003a
 
 COCOAPODS: 1.11.2

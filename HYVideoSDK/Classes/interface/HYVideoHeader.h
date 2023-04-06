@@ -14,5 +14,6 @@
 #import "UIColor+PublicUse.h"
 #import "HYVideoTabBarViewController.h"
 #import "UIImage+sdk_bundleImage.h"
+#import <YYKit/YYKit.h>
 
 #endif /* HYVideoHeader_h */

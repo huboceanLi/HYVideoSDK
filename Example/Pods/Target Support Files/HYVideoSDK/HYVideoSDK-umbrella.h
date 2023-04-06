@@ -16,6 +16,8 @@
 #import "HYVideoTabBarViewController.h"
 #import "HYVideoConfigHeader.h"
 #import "HYVideoHeader.h"
+#import "HYVideoUpgradeViewController.h"
+#import "HYVideoUpgradeView.h"
 #import "HYVideoCenterViewController.h"
 #import "HYVideoHomeViewController.h"
 #import "HYVideoDetailViewController.h"

@@ -343,6 +343,7 @@
 				"${BUILT_PRODUCTS_DIR}/SJMediaCacheServer/SJMediaCacheServer.framework",
 				"${BUILT_PRODUCTS_DIR}/SJUIKit/SJUIKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SJVideoPlayer/SJVideoPlayer.framework",
+				"${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework",
 				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -354,6 +355,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SJMediaCacheServer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SJUIKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SJVideoPlayer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -44,12 +44,12 @@ TODO: Add long description of the pod here.
   # s.frameworks = 'UIKit', 'MapKit'
   # 
 
-  #s.dependency 'HYBaseTool'
   s.dependency "QMUIKit"
   s.dependency "Masonry"
   s.dependency "SJVideoPlayer"
   s.dependency "SJUIKit/SQLite3"
   s.dependency "SJMediaCacheServer"
+  s.dependency "HYBaseTool", '~> 1.0.2'
+  s.dependency "YYKit"
 
-  
 end

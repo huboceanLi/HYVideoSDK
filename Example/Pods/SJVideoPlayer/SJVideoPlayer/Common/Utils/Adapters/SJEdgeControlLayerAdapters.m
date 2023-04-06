@@ -139,8 +139,13 @@ _isIPhoneXSeries(void) {
         
         [_bottomAdapter.view mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.offset(0);
-            make.left.equalTo(self.bottomContainerView.mas_safeAreaLayoutGuideLeft);
-            make.right.equalTo(self.bottomContainerView.mas_safeAreaLayoutGuideRight);
+//            make.left.equalTo(0);
+//            make.right.equalTo(0);
+//            make.left.equalTo(self.bottomContainerView.mas_safeAreaLayoutGuideLeft);
+//            make.right.equalTo(self.bottomContainerView.mas_safeAreaLayoutGuideRight);
+
+            make.left.equalTo(self.bottomContainerView).offset(0);
+            make.right.equalTo(self.bottomContainerView).offset(0);
             make.bottom.equalTo(self.bottomContainerView.mas_safeAreaLayoutGuideBottom).offset(-self.bottomMargin);
             
             make.height.offset(self.bottomHeight);
