@@ -13,6 +13,8 @@
 #import "HYVideoHeader.h"
 #import "UIImage+sdk_bundleImage.h"
 
+#import "HYTestViewController.h"
+
 @interface HYVideoTabBarViewController ()
 
 @end
@@ -41,7 +43,12 @@
     [VC3.tabBarItem setSelectedImage:[[UIImage sdk_bundleImage:@"wodefill"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     VC3.tabBarItem.title = @"我的";
     
-    self.viewControllers = @[VC1, VC2, VC3];
+    HYTestViewController *VC4 = [[HYTestViewController alloc] init];
+    [VC4.tabBarItem setImage:[[UIImage sdk_bundleImage:@"wodefill1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [VC4.tabBarItem setSelectedImage:[[UIImage sdk_bundleImage:@"wodefill"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    VC4.tabBarItem.title = @"测试";
+    
+    self.viewControllers = @[VC1, VC2, VC3, VC4];
         
     if (@available(iOS 15.0, *)) {
         self.tabBar.scrollEdgeAppearance = self.tabBar.standardAppearance;

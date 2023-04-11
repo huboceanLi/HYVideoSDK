@@ -20,7 +20,7 @@
 }
 
 +(UIColor *)bgColorFF{
-    return [UIColor qmui_colorWithHexString:@"#FF6A6A"];
+    return [UIColor qmui_colorWithHexString:@"#FFFFFF"];
 }
 
 +(UIColor *)bgColorFFE{

@@ -10,6 +10,9 @@
 #endif
 #endif
 
+#import "HYAFNetBaseRequset.h"
+#import "HYAFRequestWorking.h"
+#import "HYAPIString.h"
 #import "UIColor+PublicUse.h"
 #import "UIImage+sdk_bundleImage.h"
 #import "HYVideoBaseViewController.h"
@@ -24,6 +27,8 @@
 #import "HYVideoCenterViewController.h"
 #import "HYVideoHomeViewController.h"
 #import "HYVideoDetailViewController.h"
+#import "HYVideoHomeListCell.h"
+#import "HYTestViewController.h"
 #import "HYVideoRankViewController.h"
 
 FOUNDATION_EXPORT double HYVideoSDKVersionNumber;

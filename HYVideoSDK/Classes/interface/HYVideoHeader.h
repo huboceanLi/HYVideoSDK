@@ -15,5 +15,6 @@
 #import "HYVideoTabBarViewController.h"
 #import "UIImage+sdk_bundleImage.h"
 #import <YYKit/YYKit.h>
+#import "HYAFRequestWorking.h"
 
 #endif /* HYVideoHeader_h */

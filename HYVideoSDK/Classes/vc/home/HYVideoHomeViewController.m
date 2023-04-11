@@ -9,12 +9,14 @@
 #import "HYVideoHomeViewController.h"
 #import "HYVideoDetailViewController.h"
 #import "HYVideoUpgradeViewController.h"
+#import "HYVideoHomeListCell.h"
 
-#import "TFHpple.h"
-#import "TFHppleElement.h"
-#import "XPathQuery.h"
 
-@interface HYVideoHomeViewController ()
+
+@interface HYVideoHomeViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
+
+@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) NSMutableArray *dataArray;
 
 @end
 
@@ -29,88 +31,84 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setTitle:@"播放视频" forState:0];
-    [btn setTitleColor:UIColor.whiteColor forState:0];
-    btn.backgroundColor = UIColor.redColor;
-    btn.frame = CGRectMake(100, 200, 100, 40);
-    [self.view addSubview:btn];
-    [btn addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
+    self.navTitleLabel.text = @"爱奇艺最近热播";
+
+    self.dataArray = [NSMutableArray array];
     
-    UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn1 setTitle:@"升级弹框" forState:0];
-    [btn1 setTitleColor:UIColor.whiteColor forState:0];
-    btn1.backgroundColor = UIColor.redColor;
-    btn1.frame = CGRectMake(100, 280, 100, 40);
-    [self.view addSubview:btn1];
-    [btn1 addTarget:self action:@selector(upgradebuttonClick) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn2 setTitle:@"数据解析" forState:0];
-    [btn2 setTitleColor:UIColor.whiteColor forState:0];
-    btn2.backgroundColor = UIColor.redColor;
-    btn2.frame = CGRectMake(100, 360, 100, 40);
-    [self.view addSubview:btn2];
-    [btn2 addTarget:self action:@selector(htmlbuttonClick) forControlEvents:UIControlEventTouchUpInside];
+    CGFloat leftSpace = 15;
+    CGFloat space = 8;
+    NSInteger count = 3;
+    CGFloat w = ceil((SCREEN_WIDTH - leftSpace * 2 - space * 2) / count) - 1;
+    CGFloat h = 160 * w / 120 + 6 + 20;
+    
+    UICollectionViewFlowLayout * flow = [[UICollectionViewFlowLayout alloc] init];
+    flow.sectionInset = UIEdgeInsetsMake(leftSpace, leftSpace, leftSpace, leftSpace);
+    flow.itemSize = CGSizeMake(w, h);
+    flow.scrollDirection = UICollectionViewScrollDirectionVertical;
+    flow.minimumLineSpacing = space;
+    flow.minimumInteritemSpacing = space;
+    
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flow];
+    _collectionView.delegate = self;
+    _collectionView.dataSource = self;
+    _collectionView.backgroundColor =  [UIColor clearColor];
+    //    _collectionView.scrollEnabled = YES;
+    _collectionView.showsVerticalScrollIndicator = NO;
+    _collectionView.showsHorizontalScrollIndicator = NO;
+    _collectionView.pagingEnabled = YES;
+    [_collectionView registerClass:[HYVideoHomeListCell class] forCellWithReuseIdentifier:@"cell"];
+
+//    [_collectionView registerNib:[UINib nibWithNibName:@"HYVideoHomeListCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
+    if (@available (iOS 11.0, *)) {
+        [self.collectionView setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
+    }else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    [self.view addSubview:_collectionView];
+    
+    [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.top.equalTo(self.navBar.mas_bottom).offset(0);
+        make.bottom.equalTo(self.view.mas_bottom).offset(- (IS_iPhoneX ? 80 : 50));
+    }];
+    
+    [HYAFRequestWorking getMovieListWithPage:1 completionHandle:^(NSArray * _Nonnull model, BOOL success) {
+            
+    }];
 }
 
-- (void)buttonClick {
-    HYVideoDetailViewController *vc = [HYVideoDetailViewController new];
-    [self.navigationController pushViewController:vc animated:YES];
+
+#pragma mark  --- UICollectionViewDataSource
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
 }
 
-- (void)upgradebuttonClick {
-    
-    HYVideoUpgradeViewController *vc = [HYVideoUpgradeViewController new];
-    [vc showWithAnimated:YES completion:nil];
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 11;
+
+//    return self.dataArray.count;
 }
 
-- (void)htmlbuttonClick {
-    NSURL *url = [NSURL URLWithString:@"https://list.iqiyi.com/www/1/-------------11-1-1-iqiyi--.html"];
-    NSData *htmlData = [[NSData alloc]initWithContentsOfURL:url];
-    TFHpple *xpathParser = [[TFHpple alloc]initWithHTMLData:htmlData];
-
-//    NSArray *itemArray = [xpathParser searchWithXPathQuery:@"//div[@class='qy-mod-link-wrap']//img"];
-//    NSArray *itemArray = [xpathParser searchWithXPathQuery:@"//img[@class='qy-mod-cover']"];
-    NSArray *itemArray = [xpathParser searchWithXPathQuery:@"//li[@class='qy-mod-li']"];
-//    NSArray *itemArray = [xpathParser searchWithXPathQuery:@"//img[@class='qy-mod-cover fadeOutIn-enter-active']"];
-
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
     
-    NSMutableArray *content = [NSMutableArray array];
-    for (TFHppleElement *hppleElement in itemArray) {
-//        NSArray *childrens = hppleElement.children;
-        NSString *raw = hppleElement.raw;
-        if (raw.length > 0) {
-//            NSArray *itemArray1 = [xpathParser searchWithXPathQuery:@"//div[@class='qy-mod-link-wrap']"];
-
-            [content addObject:raw];
-        }
-
-//        for (int i = 0; i < childrens.count; i++) {
-//            TFHppleElement *currentItem = childrens[i];
-//            NSString *nodeName = currentItem.tagName;
+    HYVideoHomeListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+//    cell.delegate = self;
 //
-//            NSLog(@"currentItem = %@",currentItem.content);
-//        }
-    }
-    
-    if (content.count > 0) {
-        [self getContent:content];
-        return;
-    }
+//    cell.data = self.modelArray[indexPath.row];
+//    [cell loadContent];
+
     
     
-    NSLog(@"没有数据");
+    return cell;
 }
 
-- (void)getContent:(NSArray *)raws {
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
     
-    NSData *htmlData = [[NSData alloc]initWithBase64EncodedString:raws[0] options:nil];
-    TFHpple *xpathParser = [[TFHpple alloc]initWithHTMLData:htmlData];
-
-//    NSArray *itemArray = [xpathParser searchWithXPathQuery:@"//div[@class='qy-mod-link-wrap']//img"];
-//    NSArray *itemArray = [xpathParser searchWithXPathQuery:@"//img[@class='qy-mod-cover']"];
-    NSArray *itemArray = [xpathParser searchWithXPathQuery:@"//div[@class='qy-mod-link-wrap']"];
 }
 
 @end

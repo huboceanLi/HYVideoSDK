@@ -67,7 +67,7 @@
 -(UILabel *)navTitleLabel {
     if (!_navTitleLabel) {
         _navTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, IS_iPhoneX?48:24, SCREEN_WIDTH, 40)];
-        _navTitleLabel.textColor = [UIColor textColor22];
+        _navTitleLabel.textColor = [UIColor bgColorFF];
         _navTitleLabel.font = [UIFont boldSystemFontOfSize:17];
         _navTitleLabel.textAlignment = NSTextAlignmentCenter;
         [self.navBar addSubview:_navTitleLabel];
