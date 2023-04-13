@@ -18,7 +18,7 @@
 #import "SJMediaCacheServer.h"
 
 
-static NSString *const DEMO_URL_HLS = @"https://cache.we-vip.com:2096/file.m3u8?data=NwmwEe5eNbjbU3YjM1YzU3MzQ3ZTE3OTA4NjY3M2Q4OThlZjQxNjgwNjAwNzEy";
+static NSString *const DEMO_URL_HLS = @"https://cache.we-vip.com:2096/search/index.m3u8?data=NwmwEe5eNbjbU3YjM1YzU3MzQ3ZTE3OTA4NjY3M2Q4OThlZjQO0O0O";
 //static NSString *const DEMO_URL_HLS = @"https://cache.we-vip.com:2096/file.m3u8?data=NwmwEe5eNbjbU3YjM1YzU3MzQ3ZTE3OTA4NjY3M2Q4OThlZjQxNjgwODUyNzE0";
 
 

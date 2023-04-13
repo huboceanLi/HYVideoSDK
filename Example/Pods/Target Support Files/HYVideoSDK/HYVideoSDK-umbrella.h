@@ -13,6 +13,7 @@
 #import "HYAFNetBaseRequset.h"
 #import "HYAFRequestWorking.h"
 #import "HYAPIString.h"
+#import "HYMovieListModel.h"
 #import "UIColor+PublicUse.h"
 #import "UIImage+sdk_bundleImage.h"
 #import "HYVideoBaseViewController.h"
@@ -29,6 +30,7 @@
 #import "HYVideoDetailViewController.h"
 #import "HYVideoHomeListCell.h"
 #import "HYTestViewController.h"
+#import "HYWebVideoViewController.h"
 #import "HYVideoRankViewController.h"
 
 FOUNDATION_EXPORT double HYVideoSDKVersionNumber;

@@ -16,5 +16,7 @@
 #import "UIImage+sdk_bundleImage.h"
 #import <YYKit/YYKit.h>
 #import "HYAFRequestWorking.h"
+#import "HYMovieListModel.h"
+#import "MBProgressHUD+JDragon.h"
 
 #endif /* HYVideoHeader_h */

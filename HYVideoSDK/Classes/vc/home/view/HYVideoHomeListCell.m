@@ -6,6 +6,7 @@
 //
 
 #import "HYVideoHomeListCell.h"
+#import "HYVideoHeader.h"
 
 @interface HYVideoHomeListCell()
 
@@ -22,9 +23,12 @@
     self = [super initWithFrame:frame];
     if (self) {
         
+        self.backgroundColor = UIColor.clearColor;
+        
         self.headImageView = [UIImageView new];
         self.headImageView.layer.cornerRadius = 6.0;
-        self.headImageView.backgroundColor = UIColor.redColor;
+        self.headImageView.layer.masksToBounds = YES;
+        self.headImageView.backgroundColor = UIColor.clearColor;
         self.headImageView.contentMode = UIViewContentModeScaleAspectFill;
         [self addSubview:self.headImageView];
         
@@ -46,6 +50,14 @@
     }
     return self;
 }
+
+- (void)loadContent {
+    HYMovieListItemModel *model = self.data;
+    
+    [self.headImageView setImageWithURL:[NSURL URLWithString:model.imageUrl] placeholder:nil];
+    self.name.text = model.name;
+}
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];

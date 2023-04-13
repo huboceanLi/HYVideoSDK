@@ -1,6 +1,6 @@
 {
   "name": "HYVideoSDK",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "summary": "A short description of HYVideoSDK.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/huboceanLi/HYVideoSDK",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/huboceanLi/HYVideoSDK.git",
-    "tag": "0.0.1"
+    "tag": "0.0.2"
   },
   "platforms": {
     "ios": "10.0"
@@ -51,7 +51,7 @@
     "AFNetworking": [
 
     ],
-    "WCDB.swift": [
+    "MBProgressHUD+JDragon": [
 
     ]
   },

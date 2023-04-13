@@ -16,15 +16,15 @@ static AFHTTPSessionManager *manager = nil;
     dispatch_once(&onceToken, ^{
         AFHTTPRequestSerializer *requestSerializer = [[AFHTTPRequestSerializer alloc] init];
         [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        
-        
+                
         AFHTTPResponseSerializer *responseSerializer = [[AFHTTPResponseSerializer alloc] init];
         responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html", nil];
         
 //        AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
 //        securityPolicy.allowInvalidCertificates = YES;
 //        securityPolicy.validatesDomainName = NO;
-
+//        HYVideoMoiveListModel *s = [HYVideoMoiveListModel new];
+        
         manager = [AFHTTPSessionManager manager];
         
         // 设置接受解析的内容类型
@@ -47,6 +47,7 @@ static AFHTTPSessionManager *manager = nil;
 //        NSDictionary *dic1 = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
         completed(responseObject,nil);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"error:%@",error);
         completed(nil,error);
     }];
 }
