@@ -39,6 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *focus;
 @property (nonatomic, assign) double score;
 @property (nonatomic, strong) HYMovieListPeopleModel *people;
+@property (nonatomic, strong) NSArray *categories;
+@property (nonatomic, strong) NSString *categorieString;
 
 @end
 

@@ -75,17 +75,17 @@
     }];
     
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [MBProgressHUD showActivityMessageInWindow:@"" timer:30];
-        __weak typeof(self) weakSelf = self;
-        [HYAFRequestWorking getMovieListWithPage:1 completionHandle:^(NSArray * _Nonnull model, BOOL success) {
-            [MBProgressHUD hideHUD];
-            if (success) {
-                [weakSelf.dataArray addObjectsFromArray:model];
-                [weakSelf.collectionView reloadData];
-            }
-        }];
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [MBProgressHUD showActivityMessageInWindow:@"" timer:30];
+//        __weak typeof(self) weakSelf = self;
+//        [HYAFRequestWorking getMovieListWithPage:1 completionHandle:^(NSArray * _Nonnull model, BOOL success) {
+//            [MBProgressHUD hideHUD];
+//            if (success) {
+//                [weakSelf.dataArray addObjectsFromArray:model];
+//                [weakSelf.collectionView reloadData];
+//            }
+//        }];
+//    });
     
 
 }
@@ -99,9 +99,9 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-//    return 11;
+    return 11;
 
-    return self.dataArray.count;
+//    return self.dataArray.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -110,8 +110,8 @@
     HYVideoHomeListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
 //    cell.delegate = self;
 //
-    cell.data = self.dataArray[indexPath.row];
-    [cell loadContent];
+//    cell.data = self.dataArray[indexPath.row];
+//    [cell loadContent];
 
     
     
@@ -121,7 +121,7 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     HYWebVideoViewController *vc = [HYWebVideoViewController new];
-    vc.movieModel = self.dataArray[indexPath.row];
+//    vc.movieModel = self.dataArray[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

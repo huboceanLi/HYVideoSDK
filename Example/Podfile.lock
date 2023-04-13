@@ -18,7 +18,7 @@ PODS:
   - HYBaseTool (1.0.2):
     - Masonry
     - QMUIKit
-  - HYVideoSDK (0.0.2):
+  - HYVideoSDK (0.0.1):
     - AFNetworking
     - HYBaseTool (~> 1.0.2)
     - Masonry
@@ -444,7 +444,7 @@ SPEC CHECKSUMS:
   AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   HYBaseTool: df77c5b137a4069be0f71fa90cd3c287fbe2caa7
-  HYVideoSDK: 188da7464032e233dca94ebd789555860968961d
+  HYVideoSDK: e9c71e385ba5cc2239ec917e1c29a322d4006f23
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   "MBProgressHUD+JDragon": 15bf7583612f0bb9f0bcea634ba5eb247b17d014
