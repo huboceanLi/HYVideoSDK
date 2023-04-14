@@ -120,7 +120,6 @@ _isIPhoneXSeries(void) {
 
 - (void)_updateLayout_isNormal_iPhone_X {
     if (@available(iOS 11.0, *)) {
-
         [_topAdapter.view mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.topContainerView.mas_safeAreaLayoutGuideTop).offset(self.topMargin);
             make.left.equalTo(self.topContainerView.mas_safeAreaLayoutGuideLeft);
@@ -139,13 +138,8 @@ _isIPhoneXSeries(void) {
         
         [_bottomAdapter.view mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.offset(0);
-//            make.left.equalTo(0);
-//            make.right.equalTo(0);
-//            make.left.equalTo(self.bottomContainerView.mas_safeAreaLayoutGuideLeft);
-//            make.right.equalTo(self.bottomContainerView.mas_safeAreaLayoutGuideRight);
-
-            make.left.equalTo(self.bottomContainerView).offset(0);
-            make.right.equalTo(self.bottomContainerView).offset(0);
+            make.left.equalTo(self.bottomContainerView.mas_safeAreaLayoutGuideLeft);
+            make.right.equalTo(self.bottomContainerView.mas_safeAreaLayoutGuideRight);
             make.bottom.equalTo(self.bottomContainerView.mas_safeAreaLayoutGuideBottom).offset(-self.bottomMargin);
             
             make.height.offset(self.bottomHeight);
@@ -264,7 +258,6 @@ _isIPhoneXSeries(void) {
     if ( _topContainerView ) return _topContainerView;
     _topContainerView = [[SJVideoPlayerControlMaskView alloc] initWithStyle:SJMaskStyle_top];
     [self addSubview:_topContainerView];
-    _topContainerView.hidden = YES;
     [_topContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.offset(0);
         make.right.offset(0);
