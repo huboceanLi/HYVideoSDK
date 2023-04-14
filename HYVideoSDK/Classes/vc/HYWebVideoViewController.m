@@ -30,9 +30,32 @@ static CGFloat briefViewHeoght = 60.0;
 
 @property(nonatomic, strong) HYVideoBriefDetailView * briefDetailView;
 
+@property(nonatomic, strong) NSMutableArray *recommendArray;
+
 @end
 
 @implementation HYWebVideoViewController
+
+- (void)dealloc {
+    NSLog(@"HYWebVideoViewController 灰飞烟灭！");
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    NSMutableArray *vcs = [self.navigationController.viewControllers mutableCopy];
+    
+    for (int i = 0; i < vcs.count; i++) {
+        if (i != vcs.count - 1) {
+            UIViewController *v = vcs[i];
+            if ([v isKindOfClass:[HYWebVideoViewController class]]) {
+                [vcs removeObject:v];
+                break;
+            }
+        }
+    }
+    self.navigationController.viewControllers = [vcs mutableCopy];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,6 +63,8 @@ static CGFloat briefViewHeoght = 60.0;
     self.navBar.backgroundColor = UIColor.clearColor;
 //    self.navTitleLabel.text = @"播放";
     [self.navBackButton setTitle:@"" forState:0];
+    
+    self.recommendArray = [NSMutableArray array];
     
     self.playViewHeight = SCREEN_WIDTH * 0.5 + (IS_iPhoneX ? 44 : 24);
     
@@ -71,6 +96,8 @@ static CGFloat briefViewHeoght = 60.0;
     self.briefView = [HYVideoDetailBriefView new];
     self.briefView.delegate = self;
     [self.scrollView addSubview:self.briefView];
+    self.briefView.data = self.movieModel;
+    [self.briefView loadContent];
     
     [self.briefView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.scrollView.mas_top).offset(0);
@@ -86,38 +113,70 @@ static CGFloat briefViewHeoght = 60.0;
         make.top.equalTo(self.briefView.mas_bottom).offset(0);
         make.left.equalTo(self.scrollView);
         make.width.mas_offset(SCREEN_WIDTH);
-        make.height.mas_offset(briefViewHeoght);
+        make.height.mas_offset(70);
     }];
-    
+
     self.selectWorkView = [HYVideoDetailSelectWorkView new];
     [self.scrollView addSubview:self.selectWorkView];
     
-    [self.selectWorkView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.toolView.mas_bottom).offset(0);
-        make.left.equalTo(self.scrollView);
-        make.width.mas_offset(SCREEN_WIDTH);
-        make.height.mas_offset(briefViewHeoght);
-    }];
-    
-    self.recommendView = [HYVideoRecommendView new];
-    [self.scrollView addSubview:self.recommendView];
-    
-    [self.recommendView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.selectWorkView.mas_bottom).offset(0);
-        make.left.equalTo(self.scrollView);
-        make.width.mas_offset(SCREEN_WIDTH);
-        make.height.mas_offset(SCREEN_WIDTH * 2);
-        make.bottom.equalTo(self.scrollView).offset(-(IS_iPhoneX ? 34 : 20));
-    }];
+    if (self.movieModel.videoCount > 1) {
+        [self.selectWorkView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.toolView.mas_bottom).offset(0);
+            make.left.equalTo(self.scrollView);
+            make.width.mas_offset(SCREEN_WIDTH);
+            make.height.mas_offset(briefViewHeoght);
+        }];
+    }else {
+        [self.selectWorkView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.toolView.mas_bottom).offset(0);
+            make.left.equalTo(self.scrollView);
+            make.width.mas_offset(SCREEN_WIDTH);
+            make.height.mas_offset(0);
+        }];
+    }
 
+    self.recommendView = [HYVideoRecommendView new];
+    self.recommendView.delegate = self;
+    [self.scrollView addSubview:self.recommendView];
 
     [self.view addSubview:self.briefDetailView];
-//    self.briefDetailView.frame = CGRectMake(0, (IS_iPhoneX ? 88 : 64) + , <#CGFloat width#>, <#CGFloat height#>)
-//    [self.briefDetailView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.playView.mas_bottom).offset(0);
-//        make.left.right.bottom.equalTo(self.view);
-//    }];
+    
+    self.briefDetailView.data = self.movieModel;
+    [self.briefDetailView loadContent];
+
     self.briefDetailView.hidden = YES;
+    
+    for (HYMovieListItemModel *item in self.list) {
+        if (self.recommendArray.count >= 5) {
+            break;
+        }
+        for (NSString *str in item.categories) {
+            if ([self.movieModel.categorieString containsString:str] && ![self.movieModel.name isEqualToString:item.name]) {
+                [self.recommendArray addObject:item];
+                break;
+            }
+        }
+
+    }
+    if (self.recommendArray.count <= 0) {
+        [self.recommendView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.selectWorkView.mas_bottom).offset(0);
+            make.left.equalTo(self.scrollView);
+            make.width.mas_offset(SCREEN_WIDTH);
+            make.height.mas_offset(0);
+            make.bottom.equalTo(self.scrollView).offset(-(IS_iPhoneX ? 34 : 20));
+        }];
+    }else {
+        [self.recommendView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.selectWorkView.mas_bottom).offset(0);
+            make.left.equalTo(self.scrollView);
+            make.width.mas_offset(SCREEN_WIDTH);
+            make.height.mas_offset(90 * self.recommendArray.count + 50);
+            make.bottom.equalTo(self.scrollView).offset(-(IS_iPhoneX ? 34 : 20));
+        }];
+    }
+    self.recommendView.data = self.recommendArray;
+    [self.recommendView loadContent];
 }
 
 
@@ -141,6 +200,14 @@ static CGFloat briefViewHeoght = 60.0;
         return;
     }
     
+    if ([view isKindOfClass:[HYVideoRecommendView class]]) {
+        HYMovieListItemModel *model = event;
+
+        HYWebVideoViewController *vc = [HYWebVideoViewController new];
+        vc.movieModel = model;
+        vc.list = self.list;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (HYVideoBriefDetailView *)briefDetailView {

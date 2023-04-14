@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) HYMovieListItemModel *movieModel;
 
+@property (nonatomic, strong) NSArray *list;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -55,6 +55,18 @@
     return NO;
 }
 
+- (NSString *)peopleString {
+    NSString *s = @"";
+    if (self.people.main_charactor.count > 0) {
+        for (int i = 0; i < self.people.main_charactor.count; i++) {
+            s = [NSString stringWithFormat:@"%@%@/",s,self.people.main_charactor[i].name];
+        }
+    }
+    if (s.length > 1) {
+        return [s substringToIndex:s.length - 1];
+    }
+    return s;
+}
 @end
 
 

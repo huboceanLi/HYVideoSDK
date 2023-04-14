@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HYVideoDetailBriefView : HYBaseView
 
+
 @end
 
 NS_ASSUME_NONNULL_END

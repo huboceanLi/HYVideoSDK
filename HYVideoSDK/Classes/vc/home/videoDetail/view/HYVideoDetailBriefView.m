@@ -52,7 +52,7 @@
     
     [self.des mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(16);
-        make.top.equalTo(self.name.mas_bottom).offset(4);
+        make.top.equalTo(self.name.mas_bottom).offset(6);
         make.height.mas_offset(16);
     }];
     
@@ -63,6 +63,14 @@
     }];
     
 }
+
+- (void)loadContent
+{
+    HYMovieListItemModel *model = self.data;
+    self.name.text = model.name;
+    self.des.text = model.categorieString;
+}
+
 
 - (void)moreButtonClick {
     if ([self.delegate respondsToSelector:@selector(customView:event:)]) {

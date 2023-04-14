@@ -33,84 +33,83 @@
     [closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.mas_right).offset(0);
         make.top.equalTo(self.mas_top).offset(0);
-        make.width.height.mas_offset(50);
+        make.width.height.mas_equalTo(@(50));
     }];
     
     self.name = [UILabel new];
     self.name.font = [UIFont boldSystemFontOfSize:18];
     self.name.textColor = UIColor.textColor22;
-    self.name.text = @"萨芬";
     [self addSubview:self.name];
-    
+
     [self.name mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(16);
         make.top.equalTo(self.mas_top).offset(0);
-        make.height.mas_offset(50);
-        make.right.equalTo(closeBtn.mas_left).offset(-10);
+        make.height.mas_equalTo(@(50));
+        make.width.lessThanOrEqualTo(@(SCREEN_WIDTH - 80));
     }];
-    
+
     self.scrollView = [UIScrollView new];
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.showsHorizontalScrollIndicator = NO;
-//    self.scrollView.bounces = NO;
+    self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, IS_iPhoneX ? 44 : 20, 0);
     [self addSubview:self.scrollView];
     if (@available(iOS 11.0, *)) {
         [self.scrollView setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
     }
-    
+
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.name.mas_bottom).offset(0);
-        make.left.right.bottom.equalTo(self);
+        make.top.equalTo(self.mas_top).offset(50);
+        make.left.equalTo(self.mas_left).offset(0);
+        make.width.mas_equalTo(@(SCREEN_WIDTH));
+        make.height.equalTo(self.mas_height);
     }];
-    
+
     self.des = [UILabel new];
     self.des.font = [UIFont systemFontOfSize:13];
     self.des.numberOfLines = 0;
     self.des.textColor = UIColor.textColor99;
-    self.des.attributedText = [self getFirstChapterString:@"三方公司的风格\n时代根深蒂固啊公司的风格\n sewer认为他玩儿v啊多少三方公司的风格\n时代根深蒂固啊公司的风格\n sewer认为他玩儿v啊多少"];
     [self.scrollView addSubview:self.des];
-    
+
     [self.des mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(16);
         make.top.equalTo(self.scrollView.mas_top).offset(10);
-        make.right.equalTo(self.mas_right).offset(-16);
+        make.width.mas_equalTo(@(SCREEN_WIDTH - 32));
     }];
-    
+
     UIView *lines = [UIView new];
     lines.backgroundColor = [UIColor.grayColor colorWithAlphaComponent:0.2];
     [self.scrollView addSubview:lines];
-    
+
     [lines mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(16);
-        make.top.equalTo(self.des.mas_bottom).offset(20);
-        make.right.equalTo(self.mas_right).offset(-16);
+        make.top.equalTo(self.des.mas_bottom).offset(0);
         make.height.mas_offset(0.5);
+        make.width.mas_equalTo(@(SCREEN_WIDTH - 32));
+
     }];
-    
+
     self.tipLab = [UILabel new];
     self.tipLab.font = [UIFont boldSystemFontOfSize:18];
     self.tipLab.text = @"简介";
     self.tipLab.textColor = UIColor.textColor22;
     [self.scrollView addSubview:self.tipLab];
-    
+
     [self.tipLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(16);
         make.top.equalTo(lines.mas_bottom).offset(20);
-        make.right.equalTo(self.mas_right).offset(-16);
         make.height.mas_offset(20);
     }];
-    
+
     self.briefLab = [UILabel new];
     self.briefLab.font = [UIFont systemFontOfSize:13];
     self.briefLab.numberOfLines = 0;
     self.briefLab.textColor = UIColor.textColor99;
-    self.briefLab.attributedText = [self getFirstChapterString:@"转码原则：确诊病例治愈出院、无症状感染者出舱、疑似病例排除后、解除集中隔离观察等转为居家健康监测期间，藏易通健康码由红码转黄码；解除居家健康监测或按相关要求完成核酸检测转码原则：确诊病例治愈出院、无症状感染者出舱、疑似病例排除后、解除集中隔离观察等转为居家健康监测期间，藏易通健康码由红码转黄码；解除居家健康监测或按相关要求完成核酸检测转码原则：确诊病例治愈出院、无症状感染者出舱、疑似病例排除后、解除集中隔离观察等转为居家健康监测期间，藏易通健康码由红码转黄码；解除居家健康监测或按相关要求完成核酸检测转码原则：确诊病例治愈出院、无症状感染者出舱、疑似病例排除后、解除集中隔离观察等转为居家健康监测期间，藏易通健康码由红码转黄码；解除居家健康监测或按相关要求完成核酸检测转码原则：确诊病例治愈出院、无症状感染者出舱、疑似病例排除后、解除集中隔离观察等转为居家健康监测期间，藏易通健康码由红码转黄码；解除居家健康监测或按相关要求完成核酸检测转码原则：确诊病例治愈出院、无症状感染者出舱、疑似病例排除后、解除集中隔离观察等转为居家健康监测期间，藏易通健康码由红码转黄码；解除居家健康监测或按相关要求完成核酸检测转码原则：确诊病例治愈出院、无症状感染者出舱、疑似病例排除后、解除集中隔离观察等转为居家健康监测期间，藏易通健康码由红码转黄码；解除居家健康监测或按相关要码原则：确诊病例治愈出院、无症状感染者出舱、疑似病例排除后、解除集中隔离观察等转为居家健康监测期间，藏易通健康码由红码转黄码；解除居家健康监测或按相关要求完成核酸检测转码原则：确诊病例治愈出院、无症状感染者出舱、疑似病例排除后、解除集中隔离观察等转为居家健康监测期间，藏易通健康码由红码转黄码；解除居家健康监测或按相关要求完成核酸检测转码原则：确诊病例治愈出院、无症状感染者出舱、疑似病例排除后、解除集中隔离观察等转为居家健康监测期间，藏易通健康码由红码转黄码；解除居家健康监测或按相关要求完成核酸检测转码原则：确诊病例治愈出院、无症状感染者出舱、疑似病例排除后、解除集中隔离观察等转为居家健康监测期间，藏易通健康码由红码转黄码；解除居家健康监测或按相关要求完成核酸检测转码原则：确诊病例治愈出院、无症状感染者出舱、疑似病例排除后、解除集中隔离观察等转为居家健康监测期间，藏易通健康码由红码转黄码；解除居家健康监测或按相关要码原则：确诊病例治愈出院、无症状感染者出舱、疑似病例排除后、解除集中隔离观察等转为居家健康监测期间，藏易通健康码由红码转黄码；解除居家健康监测或按相关要求完成核酸检测转码原则：确诊病例治愈出院、无症状感染者出舱、疑似病例排除后、解除集中隔离观察等转为居家健康监测期间，藏易通健康码由红码转黄码；解除居家健康监测或按相关要求完成核酸检测转码原则：确诊病例治愈出院、无症状感染者出舱、疑似病例排除后、解除集中隔离观察等转为居家健康监测期间，藏易通健康码由红码转黄码；解除居家健康监测或按相关要求完成核酸检测"];
     [self.scrollView addSubview:self.briefLab];
-    
+
     [self.briefLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(16);
         make.top.equalTo(self.tipLab.mas_bottom).offset(20);
-        make.right.equalTo(self.mas_right).offset(-16);
+        make.width.mas_equalTo(@(SCREEN_WIDTH - 32));
         make.bottom.equalTo(self.scrollView.mas_bottom).offset(-(IS_iPhoneX ? 44 : 20));
     }];
 }
@@ -131,6 +130,19 @@
     if ([self.delegate respondsToSelector:@selector(customView:event:)]) {
         [self.delegate customView:self event:nil];
     }
+}
+- (void)loadContent
+{
+    HYMovieListItemModel *model = self.data;
+    self.name.text = model.name;
+    
+    NSString *timeStr = model.period;
+    if (timeStr.length > 4) {
+        timeStr = [timeStr substringToIndex:4];
+    }
+    self.des.attributedText = [self getFirstChapterString:[NSString stringWithFormat:@"%@\n评分: %.1f\n主演: %@\n类型: %@\n年代: %@\n",model.focus,model.score,model.peopleString,model.categorieString,timeStr]];
+
+    self.briefLab.attributedText = [self getFirstChapterString:model.des];
 }
 
 @end

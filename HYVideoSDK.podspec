@@ -28,13 +28,14 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/huboceanLi/HYVideoSDK.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '11.0'
   s.requires_arc = true
   s.swift_version = '5.0'
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.static_framework = true
   s.source_files = 'HYVideoSDK/Classes/**/*'
   s.resources = "HYVideoSDK/Resources/*"
+
 
   # s.resource_bundles = {
   #   'HYVideoSDK' => ['HYVideoSDK/Assets/*.png']
@@ -52,7 +53,6 @@ TODO: Add long description of the pod here.
   s.dependency "HYBaseTool", '~> 1.0.2'
   s.dependency "YYKit"
   s.dependency "AFNetworking"
-#  s.dependency "WCDB.swift", '1.1.0'
-s.dependency "MBProgressHUD+JDragon"
+  s.dependency "MBProgressHUD+JDragon"
 
 end

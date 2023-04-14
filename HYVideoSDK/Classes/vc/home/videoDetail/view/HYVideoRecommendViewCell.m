@@ -91,6 +91,16 @@
     return self;
 }
 
+- (void)loadContent {
+    HYMovieListItemModel *model = self.data;
+    
+    [self.headImageView setImageWithURL:[NSURL URLWithString:model.imageUrl] placeholder:nil];
+    self.name.text = model.name;
+    self.focus.text = model.focus;
+    self.people.text = model.peopleString;
+    self.score.text = [NSString stringWithFormat:@"%.1f",model.score];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
