@@ -6,7 +6,6 @@
 //
 
 #import "HYVideoDetailViewController.h"
-#import <SJVideoPlayer/SJVideoPlayer.h>
 #import <Masonry/Masonry.h>
 
 #import <SJMediaCacheServer/NSURLRequest+MCS.h>
@@ -16,6 +15,7 @@
 #import <SJBaseVideoPlayer/SJBaseVideoPlayerConst.h>
 #import "MCSDownload.h"
 #import "SJMediaCacheServer.h"
+#import <SJVideoPlayer/SJVideoPlayer.h>
 
 
 static NSString *const DEMO_URL_HLS = @"https://cache.we-vip.com:2096/search/index.m3u8?data=NwmwEe5eNbjbU3YjM1YzU3MzQ3ZTE3OTA4NjY3M2Q4OThlZjQO0O0O";

@@ -35,6 +35,7 @@
 #import "HYVideoPlayView.h"
 #import "HYVideoRecommendView.h"
 #import "HYVideoRecommendViewCell.h"
+#import "HYVideoWebPlayView.h"
 #import "HYVideoHomeListCell.h"
 #import "HYTestViewController.h"
 #import "HYWebVideoViewController.h"

@@ -8,6 +8,7 @@
 #import "HYWebVideoViewController.h"
 
 #import "HYVideoPlayView.h"
+#import "HYVideoWebPlayView.h"
 #import "HYVideoDetailBriefView.h"
 #import "HYVideoDetailToolView.h"
 #import "HYVideoDetailSelectWorkView.h"
@@ -23,6 +24,7 @@ static CGFloat briefViewHeoght = 60.0;
 
 @property(nonatomic, strong) UIScrollView * scrollView;
 @property(nonatomic, strong) HYVideoPlayView * playView;
+//@property(nonatomic, strong) HYVideoWebPlayView * playView;
 @property(nonatomic, strong) HYVideoDetailBriefView * briefView;
 @property(nonatomic, strong) HYVideoDetailToolView * toolView;
 @property(nonatomic, strong) HYVideoDetailSelectWorkView * selectWorkView;
@@ -66,10 +68,15 @@ static CGFloat briefViewHeoght = 60.0;
     
     self.recommendArray = [NSMutableArray array];
     
-    self.playViewHeight = SCREEN_WIDTH * 0.5 + (IS_iPhoneX ? 44 : 24);
+//    self.playViewHeight = SCREEN_WIDTH * 0.5 + (IS_iPhoneX ? 44 : 24);
+    self.playViewHeight = 220 * SCREEN_WIDTH / 390 + (IS_iPhoneX ? 44 : 24);
+
     
     self.playView = [HYVideoPlayView new];
     [self.view addSubview:self.playView];
+    
+    self.playView.data = self.movieModel;
+    [self.playView loadContent];
     
     [self.playView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.right.equalTo(self.view);
