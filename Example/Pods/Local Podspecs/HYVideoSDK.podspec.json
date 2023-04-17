@@ -33,15 +33,6 @@
     "Masonry": [
 
     ],
-    "SJVideoPlayer": [
-
-    ],
-    "SJUIKit/SQLite3": [
-
-    ],
-    "SJMediaCacheServer": [
-
-    ],
     "HYBaseTool": [
       "~> 1.0.2"
     ],

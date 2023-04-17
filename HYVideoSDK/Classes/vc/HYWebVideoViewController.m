@@ -62,9 +62,9 @@ static CGFloat briefViewHeoght = 60.0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navBar.backgroundColor = UIColor.clearColor;
+    self.navBar.hidden = YES;
 //    self.navTitleLabel.text = @"播放";
-    [self.navBackButton setTitle:@"" forState:0];
+//    [self.navBackButton setTitle:@"" forState:0];
     
     self.recommendArray = [NSMutableArray array];
     
@@ -83,7 +83,7 @@ static CGFloat briefViewHeoght = 60.0;
         make.height.mas_offset(self.playViewHeight);
     }];
     
-    [self.view bringSubviewToFront:self.navBar];
+//    [self.view bringSubviewToFront:self.navBar];
 
     
     self.scrollView = [UIScrollView new];

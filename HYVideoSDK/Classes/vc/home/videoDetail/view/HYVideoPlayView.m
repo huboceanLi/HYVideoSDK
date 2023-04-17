@@ -6,14 +6,16 @@
 //
 
 #import "HYVideoPlayView.h"
-#import <SJMediaCacheServer/NSURLRequest+MCS.h>
-#import <SJMediaCacheServer/MCSURL.h>
-#import <SJMediaCacheServer/MCSPrefetcherManager.h>
-#import <SJBaseVideoPlayer/SJAVMediaPlaybackController.h>
-#import <SJBaseVideoPlayer/SJBaseVideoPlayerConst.h>
-#import "MCSDownload.h"
+
+#import "SJVideoPlayer.h"
+#import "SJAVMediaPlaybackController.h"
+#import "SJBaseVideoPlayerConst.h"
+
 #import "SJMediaCacheServer.h"
-#import <SJVideoPlayer/SJVideoPlayer.h>
+#import "NSURLRequest+MCS.h"
+#import "MCSURL.h"
+#import "MCSPrefetcherManager.h"
+#import "MCSDownload.h"
 
 static NSString *const DEMO_URL_HLS = @"https://cache.we-vip.com:2096/search/index.m3u8?data=NwmwEe5eNbjbU3YjM1YzU3MzQ3ZTE3OTA4NjY3M2Q4OThlZjQO0O0O";
 
@@ -51,7 +53,8 @@ static NSString *const DEMO_URL_HLS = @"https://cache.we-vip.com:2096/search/ind
 - (void)loadContent
 {
     HYMovieListItemModel *model = self.data;
-
+    NSLog(@"播放时间:%f",self.player.currentTime);
+    NSLog(@"总时间:%f",self.player.duration);
 }
 
 #pragma mark -
