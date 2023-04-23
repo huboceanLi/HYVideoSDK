@@ -18,5 +18,7 @@
 #import "HYAFRequestWorking.h"
 #import "HYMovieListModel.h"
 #import "MBProgressHUD+JDragon.h"
+#import "HYVideoPlayTypeManager.h"
+#import "HYVideoTypeListModel.h"
 
 #endif /* HYVideoHeader_h */

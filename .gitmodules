@@ -1,0 +1,3 @@
+[submodule "Example/hyvideo-framework"]
+	path = Example/hyvideo-framework
+	url = https://gitee.com/yjlhy/hyvideo-framework.git

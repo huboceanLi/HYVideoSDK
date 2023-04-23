@@ -36,6 +36,7 @@
 
     self.dataArray = [NSMutableArray array];
     
+    [[HYVideoPlayTypeManager shareInstance] getPlayTypeLisy];
     
     CGFloat leftSpace = 15;
     CGFloat space = 8;

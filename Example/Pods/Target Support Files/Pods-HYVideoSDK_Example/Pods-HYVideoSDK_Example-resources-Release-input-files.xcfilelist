@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-HYVideoSDK_Example/Pods-HYVideoSDK_Example-resources.sh
+${PODS_ROOT}/../../HYVideoSDK/Resources/playType.plist
 ${PODS_ROOT}/../../HYVideoSDK/Resources/HYVideoSDK.bundle
 ${PODS_ROOT}/../../HYVideoSDK/Resources/SJBaseVideoPlayerResources.bundle
 ${PODS_ROOT}/../../HYVideoSDK/Resources/SJVideoPlayer.bundle

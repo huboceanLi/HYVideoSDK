@@ -1,6 +1,6 @@
 use_frameworks!
 
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 target 'HYVideoSDK_Example' do
   
@@ -12,10 +12,12 @@ target 'HYVideoSDK_Example' do
 #    end
 #  end
 
-  
+  use_frameworks!
+
   pod 'HYVideoSDK', :path => '../'
 
-  
+#  pod 'HYVideoDB',:git =>"https://github.com/huboceanLi/HYVideoDB.git"
+
   target 'HYVideoSDK_Tests' do
     inherit! :search_paths
 

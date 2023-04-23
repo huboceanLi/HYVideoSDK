@@ -97,11 +97,13 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "${PODS_ROOT}/../../HYVideoSDK/Resources/playType.plist"
   install_resource "${PODS_ROOT}/../../HYVideoSDK/Resources/HYVideoSDK.bundle"
   install_resource "${PODS_ROOT}/../../HYVideoSDK/Resources/SJBaseVideoPlayerResources.bundle"
   install_resource "${PODS_ROOT}/../../HYVideoSDK/Resources/SJVideoPlayer.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "${PODS_ROOT}/../../HYVideoSDK/Resources/playType.plist"
   install_resource "${PODS_ROOT}/../../HYVideoSDK/Resources/HYVideoSDK.bundle"
   install_resource "${PODS_ROOT}/../../HYVideoSDK/Resources/SJBaseVideoPlayerResources.bundle"
   install_resource "${PODS_ROOT}/../../HYVideoSDK/Resources/SJVideoPlayer.bundle"

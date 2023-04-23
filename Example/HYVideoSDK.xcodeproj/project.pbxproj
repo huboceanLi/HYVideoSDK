@@ -22,6 +22,7 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		6A1DE56F8F1BD791778DD97B /* Pods_HYVideoSDK_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D11EF45246573E132E8F952 /* Pods_HYVideoSDK_Tests.framework */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
+		83AED27129F0D0F900077ADF /* VideoDBFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83AED27029F0D0BD00077ADF /* VideoDBFramework.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		9C807130037AE9EA2AB51ED0 /* Pods_HYVideoSDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 884C165DD5D7EB5574ED4D72 /* Pods_HYVideoSDK_Example.framework */; };
 /* End PBXBuildFile section */
@@ -33,6 +34,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 6003F589195388D20070C39A;
 			remoteInfo = HYVideoSDK;
+		};
+		83AED26F29F0D0BD00077ADF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83AED26B29F0D0BD00077ADF /* VideoDBFramework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 83AED24029EF84A700077ADF;
+			remoteInfo = VideoDBFramework;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -60,6 +68,7 @@
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		83AED26B29F0D0BD00077ADF /* VideoDBFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VideoDBFramework.xcodeproj; path = "hyvideo-framework/VideoDBFramework.xcodeproj"; sourceTree = "<group>"; };
 		83CCCD0529E79564005F3A23 /* HYVideoSDK_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HYVideoSDK_Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		884C165DD5D7EB5574ED4D72 /* Pods_HYVideoSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYVideoSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83AED27129F0D0F900077ADF /* VideoDBFramework.framework in Frameworks */,
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
@@ -110,6 +120,7 @@
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
+				83AED26B29F0D0BD00077ADF /* VideoDBFramework.xcodeproj */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Example for HYVideoSDK */,
 				6003F5B5195388D20070C39A /* Tests */,
@@ -199,6 +210,14 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		83AED26C29F0D0BD00077ADF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				83AED27029F0D0BD00077ADF /* VideoDBFramework.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		83D127A929D68F7E00FD4112 /* vc */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +298,12 @@
 			mainGroup = 6003F581195388D10070C39A;
 			productRefGroup = 6003F58B195388D20070C39A /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 83AED26C29F0D0BD00077ADF /* Products */;
+					ProjectRef = 83AED26B29F0D0BD00077ADF /* VideoDBFramework.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				6003F589195388D20070C39A /* HYVideoSDK_Example */,
@@ -286,6 +311,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		83AED27029F0D0BD00077ADF /* VideoDBFramework.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = VideoDBFramework.framework;
+			remoteRef = 83AED26F29F0D0BD00077ADF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		6003F588195388D20070C39A /* Resources */ = {
@@ -527,6 +562,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = V6VQ8W355L;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HYVideoSDK",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HYVideoSDK/HYVideoSDK-Prefix.pch";
 				INFOPLIST_FILE = "HYVideoSDK/HYVideoSDK-Info.plist";
@@ -553,6 +592,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = V6VQ8W355L;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HYVideoSDK",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HYVideoSDK/HYVideoSDK-Prefix.pch";
 				INFOPLIST_FILE = "HYVideoSDK/HYVideoSDK-Info.plist";

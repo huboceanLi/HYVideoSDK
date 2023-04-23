@@ -54,5 +54,7 @@ TODO: Add long description of the pod here.
   s.dependency "YYKit"
   s.dependency "AFNetworking"
   s.dependency "MBProgressHUD+JDragon"
+  s.dependency "WCDB.swift"
+
 
 end

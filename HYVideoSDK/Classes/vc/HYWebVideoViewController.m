@@ -23,8 +23,8 @@ static CGFloat briefViewHeoght = 60.0;
 @property(nonatomic, assign) CGFloat playViewHeight;
 
 @property(nonatomic, strong) UIScrollView * scrollView;
-@property(nonatomic, strong) HYVideoPlayView * playView;
-//@property(nonatomic, strong) HYVideoWebPlayView * playView;
+//@property(nonatomic, strong) HYVideoPlayView * playView;
+@property(nonatomic, strong) HYVideoWebPlayView * playView;
 @property(nonatomic, strong) HYVideoDetailBriefView * briefView;
 @property(nonatomic, strong) HYVideoDetailToolView * toolView;
 @property(nonatomic, strong) HYVideoDetailSelectWorkView * selectWorkView;
@@ -72,7 +72,7 @@ static CGFloat briefViewHeoght = 60.0;
     self.playViewHeight = 220 * SCREEN_WIDTH / 390 + (IS_iPhoneX ? 44 : 24);
 
     
-    self.playView = [HYVideoPlayView new];
+    self.playView = [HYVideoWebPlayView new];
     [self.view addSubview:self.playView];
     
     self.playView.data = self.movieModel;

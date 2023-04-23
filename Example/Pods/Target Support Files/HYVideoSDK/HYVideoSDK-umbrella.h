@@ -20,6 +20,8 @@
 #import "HYVideoTabBarViewController.h"
 #import "HYVideoConfigHeader.h"
 #import "HYVideoHeader.h"
+#import "HYVideoPlayTypeManager.h"
+#import "HYVideoTypeListModel.h"
 #import "HYVideoUpgradeViewController.h"
 #import "HYVideoUpgradeView.h"
 #import "GCDAsyncSocket.h"

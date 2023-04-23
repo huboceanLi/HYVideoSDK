@@ -30,6 +30,7 @@ static NSString *headUrl = @"https://jx.playerjy.com/?url=";
     _webView.UIDelegate = self;
     _webView.scrollView.backgroundColor = UIColor.blackColor;
     _webView.navigationDelegate = self;
+    _webView.scrollView.scrollEnabled = NO;
     _webView.backgroundColor = UIColor.blackColor;
     [self addSubview:_webView];
 
@@ -43,7 +44,12 @@ static NSString *headUrl = @"https://jx.playerjy.com/?url=";
 {
     HYMovieListItemModel *model = self.data;
     
-    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",headUrl,model.playUrl]];
+    //1，3，4,5,7,8,10,11,12,13,14,15失败
+    HYVideoTypeListModel *head = [HYVideoPlayTypeManager shareInstance].playTypeArray[0];
+    
+    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",head.url,model.playUrl]];
+    
+    NSLog(@"链接:%@",model.playUrl);
     if (url) {
         NSURLRequestCachePolicy policy = NSURLRequestReturnCacheDataElseLoad;
         NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:url cachePolicy:policy timeoutInterval:60];
