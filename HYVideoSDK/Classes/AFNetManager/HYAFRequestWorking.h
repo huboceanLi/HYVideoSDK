@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (id)getMovieListWithPage:(NSInteger)page completionHandle:(void(^)(NSArray *model, BOOL success))completed;
 
+
+
 @end
 
 NS_ASSUME_NONNULL_END

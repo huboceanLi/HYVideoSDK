@@ -1,33 +1,22 @@
 //
-//  HYVideoHomeViewController.m
-//  HYVideoSDK_Example
+//  HYHomeMovieViewController.m
+//  HYVideoSDK
 //
-//  Created by oceanMAC on 2023/3/31.
-//  Copyright © 2023 admin@buzzmsg.com. All rights reserved.
+//  Created by oceanMAC on 2023/4/24.
 //
 
-#import "HYVideoHomeViewController.h"
-#import "HYVideoDetailViewController.h"
-#import "HYVideoUpgradeViewController.h"
+#import "HYHomeMovieViewController.h"
+#import "HYHomeVideoHeadView.h"
 #import "HYVideoHomeListCell.h"
-#import "HYVideoHeader.h"
 
-#import "HYWebVideoViewController.h"
-
-@interface HYVideoHomeViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface HYHomeMovieViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
 @end
 
-@implementation HYVideoHomeViewController
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.hidesBottomBarWhenPushed = NO;
-    self.tabBarController.tabBar.hidden = NO;
-}
+@implementation HYHomeMovieViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,7 +25,7 @@
 
     self.dataArray = [NSMutableArray array];
     
-    [[HYVideoPlayTypeManager shareInstance] getPlayTypeLisy];
+//    [[HYVideoPlayTypeManager shareInstance] getPlayTypeLisy];
     
     CGFloat leftSpace = 15;
     CGFloat space = 8;
@@ -50,6 +39,7 @@
     flow.scrollDirection = UICollectionViewScrollDirectionVertical;
     flow.minimumLineSpacing = space;
     flow.minimumInteritemSpacing = space;
+    flow.headerReferenceSize = CGSizeMake(SCREEN_WIDTH, 100);
     
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flow];
     _collectionView.delegate = self;
@@ -60,12 +50,11 @@
     _collectionView.showsHorizontalScrollIndicator = NO;
     _collectionView.pagingEnabled = NO;
     [_collectionView registerClass:[HYVideoHomeListCell class] forCellWithReuseIdentifier:@"cell"];
+    [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView"];
 
-//    [_collectionView registerNib:[UINib nibWithNibName:@"HYVideoHomeListCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
+    //    [_collectionView registerNib:[UINib nibWithNibName:@"HYVideoHomeListCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
     if (@available (iOS 11.0, *)) {
         [self.collectionView setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
-    }else {
-        self.automaticallyAdjustsScrollViewInsets = NO;
     }
     [self.view addSubview:_collectionView];
     
@@ -76,22 +65,10 @@
     }];
     
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [MBProgressHUD showActivityMessageInWindow:@"" timer:30];
-        __weak typeof(self) weakSelf = self;
-        [HYAFRequestWorking getMovieListWithPage:1 completionHandle:^(NSArray * _Nonnull model, BOOL success) {
-            [MBProgressHUD hideHUD];
-            if (success) {
-                [weakSelf.dataArray addObjectsFromArray:model];
-                [weakSelf.collectionView reloadData];
-            }
-        }];
-    });
-    
-
-
+    [HYDouBanAFRequestWorking getMovieListWithStart:0 type:@"全部" area:@"全部" years:@"全部" tags:@"全部" completionHandle:^(NSArray * _Nonnull model, BOOL success) {
+            
+    }];
 }
-
 
 #pragma mark  --- UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -101,9 +78,9 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-//    return 11;
+    return 11;
 
-    return self.dataArray.count;
+//    return self.dataArray.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -112,8 +89,8 @@
     HYVideoHomeListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
 //    cell.delegate = self;
 //
-    cell.data = self.dataArray[indexPath.row];
-    [cell loadContent];
+//    cell.data = self.dataArray[indexPath.row];
+//    [cell loadContent];
 
     
     
@@ -122,10 +99,22 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    HYWebVideoViewController *vc = [HYWebVideoViewController new];
-    vc.movieModel = self.dataArray[indexPath.row];
-    vc.list = self.dataArray;
-    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    if (kind == UICollectionElementKindSectionHeader) {
+        
+        UICollectionReusableView *headView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView" forIndexPath:indexPath];
+        headView.backgroundColor = UIColor.greenColor;
+        [headView.subviews makeObjectsPerformSelector: @selector(removeFromSuperview)];
+
+        HYHomeVideoHeadView *head = [[HYHomeVideoHeadView alloc] initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH, 160)];
+        [headView addSubview:head];
+
+        return headView;
+    }
+    return nil;
 }
 
 @end

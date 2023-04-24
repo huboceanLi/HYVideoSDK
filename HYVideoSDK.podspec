@@ -55,6 +55,7 @@ TODO: Add long description of the pod here.
   s.dependency "AFNetworking"
   s.dependency "MBProgressHUD+JDragon"
   s.dependency "WCDB.swift"
+#  s.dependency "JXCategoryView"
 
 
 end

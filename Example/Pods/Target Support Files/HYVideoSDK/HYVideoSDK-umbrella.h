@@ -10,6 +10,9 @@
 #endif
 #endif
 
+#import "HYDouBanAFNetBaseRequset.h"
+#import "HYDouBanAFRequestWorking.h"
+#import "HYDouBanYearsModel.h"
 #import "HYAFNetBaseRequset.h"
 #import "HYAFRequestWorking.h"
 #import "HYAPIString.h"
@@ -264,6 +267,7 @@
 #import "TFHppleElement.h"
 #import "XPathQuery.h"
 #import "HYVideoCenterViewController.h"
+#import "HYHomeMovieViewController.h"
 #import "HYVideoHomeViewController.h"
 #import "HYVideoDetailViewController.h"
 #import "HYVideoBriefDetailView.h"
@@ -274,7 +278,11 @@
 #import "HYVideoRecommendView.h"
 #import "HYVideoRecommendViewCell.h"
 #import "HYVideoWebPlayView.h"
+#import "HYHomeVideoHeadView.h"
 #import "HYVideoHomeListCell.h"
+#import "HYDouBanCategeryTempModel.h"
+#import "HYHomeCategeryCell.h"
+#import "HYHomeCategeryView.h"
 #import "HYTestViewController.h"
 #import "HYWebVideoViewController.h"
 #import "HYVideoRankViewController.h"

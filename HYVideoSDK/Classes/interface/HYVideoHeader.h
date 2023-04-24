@@ -20,5 +20,10 @@
 #import "MBProgressHUD+JDragon.h"
 #import "HYVideoPlayTypeManager.h"
 #import "HYVideoTypeListModel.h"
+#import <HYBaseTool/HYBaseTool.h>
+
+#import "HYDouBanAFRequestWorking.h"
+#import "HYDouBanYearsModel.h"
+#import "HYDouBanCategeryTempModel.h"
 
 #endif /* HYVideoHeader_h */

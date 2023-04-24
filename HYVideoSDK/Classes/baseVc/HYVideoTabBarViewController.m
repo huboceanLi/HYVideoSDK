@@ -12,6 +12,7 @@
 #import "HYVideoCenterViewController.h"
 #import "HYVideoHeader.h"
 #import "UIImage+sdk_bundleImage.h"
+#import "HYHomeMovieViewController.h"
 
 #import "HYTestViewController.h"
 
@@ -28,7 +29,7 @@
     
     [[UITabBar appearance] setTranslucent:YES];
     
-    HYVideoHomeViewController *VC1 = [[HYVideoHomeViewController alloc] init];
+    HYHomeMovieViewController *VC1 = [[HYHomeMovieViewController alloc] init];
     [VC1.tabBarItem setImage:[[UIImage sdk_bundleImage:@"ai2351"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [VC1.tabBarItem setSelectedImage:[[UIImage sdk_bundleImage:@"ai235"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     VC1.tabBarItem.title = @"视频";
