@@ -17,4 +17,8 @@ NSString * const API_Fillter_List = @"https://m.douban.com/rexxar/api/v2/movie/r
 
 NSString * const API_DouBan_Movie_List = @"https://m.douban.com/rexxar/api/v2/movie/recommend";
 
+NSString * const API_DouBan_Movie_Detail = @"https://m.douban.com/rexxar/api/v2/movie/";
+
+NSString * const API_DouBan_Search_List = @"https://search.douban.com/movie/subject_search";
+
 @end

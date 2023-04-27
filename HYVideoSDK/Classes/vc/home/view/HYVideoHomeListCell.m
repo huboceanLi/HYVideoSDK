@@ -10,8 +10,7 @@
 
 @interface HYVideoHomeListCell()
 
-@property (nonatomic, strong) UIImageView *headImageView;
-@property (nonatomic, strong) UILabel *name;
+
 
 @end
 

@@ -133,16 +133,18 @@
 }
 - (void)loadContent
 {
-    HYMovieListItemModel *model = self.data;
-    self.name.text = model.name;
+    HYDouBanMovieDetailModel *model = self.data;
+    self.name.text = model.title;
     
-    NSString *timeStr = model.period;
-    if (timeStr.length > 4) {
-        timeStr = [timeStr substringToIndex:4];
-    }
-    self.des.attributedText = [self getFirstChapterString:[NSString stringWithFormat:@"%@\n评分: %.1f\n主演: %@\n类型: %@\n年代: %@\n",model.focus,model.score,model.peopleString,model.categorieString,timeStr]];
+//    NSString *timeStr = model.period;
+//    if (timeStr.length > 4) {
+//        timeStr = [timeStr substringToIndex:4];
+//    }
+//    self.des.attributedText = [self getFirstChapterString:[NSString stringWithFormat:@"%@\n评分: %.1f\n主演: %@\n类型: %@\n年代: %@\n",model.focus,model.score,model.peopleString,model.categorieString,timeStr]];
+//
+    self.des.attributedText = [self getFirstChapterString:[NSString stringWithFormat:@"评分: %.1f\n导演: %@\n主演: %@\n类型: %@\n年代: %@\n",model.rating.value,model.directorString,model.actorString,model.genreString,model.year]];
 
-    self.briefLab.attributedText = [self getFirstChapterString:model.des];
+    self.briefLab.attributedText = [self getFirstChapterString:model.intro];
 }
 
 @end

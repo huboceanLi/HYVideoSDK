@@ -9,7 +9,6 @@
 
 @interface HYHomeCategeryCell()
 
-@property (nonatomic, strong) UILabel *name;
 
 @end
 
@@ -26,7 +25,6 @@
         self.layer.masksToBounds = YES;
         
         self.name = [UILabel new];
-        self.name.text = @"是的是大的是丰收";
         self.name.font = [UIFont systemFontOfSize:13];
         self.name.textColor = [UIColor mainColor];
         self.name.textAlignment = NSTextAlignmentCenter;

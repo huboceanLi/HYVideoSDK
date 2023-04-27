@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, assign) NSInteger recordIndex;
 
 @end
 
@@ -88,11 +89,14 @@
     cell.data = self.dataArray[indexPath.row];
     [cell loadContent];
 
-    if (indexPath.row == 0) {
-        cell.backgroundColor = [UIColor.lightGrayColor colorWithAlphaComponent:0.3];
+    if (self.recordIndex == indexPath.row) {
+        cell.backgroundColor = [UIColor.lightGrayColor colorWithAlphaComponent:0.2];
+        cell.name.textColor = [UIColor mainColor];
     }else {
         cell.backgroundColor = UIColor.clearColor;
+        cell.name.textColor = [UIColor textColor33];
     }
+
     return cell;
 }
 

@@ -6,10 +6,13 @@
 //
 
 #import "HYVideoBaseViewController.h"
+#import "HYVideoHeader.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HYVideoDetailViewController : HYVideoBaseViewController
+
+@property (nonatomic, strong) HYDouBanMovieItemModel *movieModel;
 
 @end
 

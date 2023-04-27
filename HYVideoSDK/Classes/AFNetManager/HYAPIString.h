@@ -19,6 +19,10 @@ extern NSString * const API_Fillter_List;
 
 extern NSString * const API_DouBan_Movie_List;
 
+extern NSString * const API_DouBan_Movie_Detail;
+
+extern NSString * const API_DouBan_Search_List;
+
 @end
 
 NS_ASSUME_NONNULL_END

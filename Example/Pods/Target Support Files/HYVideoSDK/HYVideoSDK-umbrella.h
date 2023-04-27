@@ -12,6 +12,9 @@
 
 #import "HYDouBanAFNetBaseRequset.h"
 #import "HYDouBanAFRequestWorking.h"
+#import "HYDouBanMovieDetailModel.h"
+#import "HYDouBanMovieListModel.h"
+#import "HYDouBanSearchModel.h"
 #import "HYDouBanYearsModel.h"
 #import "HYAFNetBaseRequset.h"
 #import "HYAFRequestWorking.h"
@@ -286,6 +289,9 @@
 #import "HYTestViewController.h"
 #import "HYWebVideoViewController.h"
 #import "HYVideoRankViewController.h"
+#import "HYMovieSearchViewController.h"
+#import "HYMovieSearchHeadView.h"
+#import "HYMovieTempWebView.h"
 
 FOUNDATION_EXPORT double HYVideoSDKVersionNumber;
 FOUNDATION_EXPORT const unsigned char HYVideoSDKVersionString[];

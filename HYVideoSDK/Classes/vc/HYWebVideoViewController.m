@@ -13,7 +13,6 @@
 #import "HYVideoDetailToolView.h"
 #import "HYVideoDetailSelectWorkView.h"
 #import "HYVideoRecommendView.h"
-
 #import "HYVideoBriefDetailView.h"
 
 static CGFloat briefViewHeoght = 60.0;

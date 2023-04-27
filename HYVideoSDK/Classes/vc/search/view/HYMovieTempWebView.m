@@ -1,30 +1,27 @@
 //
-//  HYVideoWebPlayView.m
-//  AFNetworking
+//  HYMovieTempWebView.m
+//  HYVideoSDK
 //
-//  Created by oceanMAC on 2023/4/13.
+//  Created by oceanMAC on 2023/4/26.
 //
 
-#import "HYVideoWebPlayView.h"
+#import "HYMovieTempWebView.h"
 #import <WebKit/WebKit.h>
 
-static NSString *headUrl = @"https://jx.playerjy.com/?url=";
+#import "TFHpple.h"
+#import "TFHppleElement.h"
+#import "XPathQuery.h"
 
-@interface HYVideoWebPlayView()<WKUIDelegate,WKNavigationDelegate>
+@interface HYMovieTempWebView()<WKUIDelegate,WKNavigationDelegate>
 
 @property(nonatomic, strong) WKWebView * webView;
-@property(nonatomic, strong) NSArray * titleArray;
 
 @end
 
-@implementation HYVideoWebPlayView
+@implementation HYMovieTempWebView
 
 - (void)initSubviews {
     [super initSubviews];
-    
-    self.backgroundColor = UIColor.blackColor;
-    
-    self.titleArray = @[@"爱奇",@"优酷",@"腾讯"];
     
     WKWebViewConfiguration * config = [[WKWebViewConfiguration alloc] init];
     config.allowsInlineMediaPlayback = YES;
@@ -33,50 +30,23 @@ static NSString *headUrl = @"https://jx.playerjy.com/?url=";
     _webView.UIDelegate = self;
     _webView.scrollView.backgroundColor = UIColor.blackColor;
     _webView.navigationDelegate = self;
-    _webView.scrollView.scrollEnabled = NO;
+//    _webView.scrollView.scrollEnabled = NO;
     _webView.backgroundColor = UIColor.blackColor;
     [self addSubview:_webView];
 
     [_webView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self);
-        make.top.equalTo(self.mas_top).offset(IS_iPhoneX ? 44 : 24);
+        make.left.right.bottom.top.equalTo(self);
     }];
 }
 
-- (void)loadContent
+- (void)getVideoUrl:(NSString *)url
 {
-    HYDouBanMovieDetailModel *model = self.data;
-
-    if (model.vendors.count > 0) {
-        
-        HYDouBanMovieDetailVendorsModel *vendorsModel;
-
-        for (HYDouBanMovieDetailVendorsModel *item in model.vendors) {
-            NSString *t = item.title;
-            if (t.length > 2) {
-                t = [t substringToIndex:2];
-            }
-            if ([self.titleArray containsObject:t]) {
-                vendorsModel = item;
-                break;
-            }
-        }
-        
-
-        //1，3，4,5,7,8,10,11,12,13,14,15失败
-        HYVideoTypeListModel *head = [HYVideoPlayTypeManager shareInstance].playTypeArray[0];
-        
-        NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",head.url,vendorsModel.url]];
-        
-        NSLog(@"链接:%@",vendorsModel.url);
-        if (url) {
-            NSURLRequestCachePolicy policy = NSURLRequestReturnCacheDataElseLoad;
-            NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:url cachePolicy:policy timeoutInterval:60];
-            [self.webView loadRequest:request];
-        }
+    NSURL * urlStr = [NSURL URLWithString:url];
+    if (urlStr) {
+        NSURLRequestCachePolicy policy = NSURLRequestReturnCacheDataElseLoad;
+        NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:urlStr cachePolicy:policy timeoutInterval:60];
+        [self.webView loadRequest:request];
     }
-    
-
 }
 
 #pragma mark-- <WKNavigationDelegate>
@@ -97,36 +67,107 @@ static NSString *headUrl = @"https://jx.playerjy.com/?url=";
 //页面加载完成
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
 
-//    [self.webView evaluateJavaScript:@"document.body.innerHTML" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-//        NSLog(@"网页抓取结果:%@", result);
-//    }];
-//
-//    NSString *titleSrcString = [NSString stringWithFormat:@"document.getElementsByClassName('weibo-text')[0].getElementsByTagName('a')[0].href"];
-//    [self.webView evaluateJavaScript:titleSrcString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-//        // 超话链接
-//        NSLog(@"标题链接抓取结果:%@", result);
-//    }];
-//
-//    NSString *titleString = [NSString stringWithFormat:@"document.getElementsByClassName('weibo-text')[0].textContent"];
-//    [self.webView evaluateJavaScript:titleString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-//        // 标题
-//        NSLog(@"标题抓取结果:%@", result);
-//    }];
-//
-//    NSString *imageSrcString = [NSString stringWithFormat:@"document.getElementsByClassName('m-img-box')[0].getElementsByTagName('img')[0].src"];
-//    [self.webView evaluateJavaScript:imageSrcString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-//        // 取一个头像地址
-//        NSLog(@"头像抓取结果:%@", result);
-//    }];
-//
-//    NSString *authorString = [NSString stringWithFormat:@"document.getElementsByClassName('m-text-cut')[0].textContent"];
-//    [self.webView evaluateJavaScript:authorString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-//        // 自媒体名称
-//        NSLog(@"自媒体名称抓取结果:%@", result);
-//    }];
+    [self.webView evaluateJavaScript:@"document.body.innerHTML" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        NSLog(@"网页抓取结果:%@", result);
+        
+        NSData *htmlData =[result dataUsingEncoding:NSUTF8StringEncoding];
+        TFHpple *xpathParser = [[TFHpple alloc]initWithHTMLData:htmlData];
 
+        NSArray *itemArray = [xpathParser searchWithXPathQuery:@"//div[@class='item-root']"];
+        
+        NSMutableArray *array = [NSMutableArray array];
+        for (TFHppleElement *hppleElement in itemArray) {
+//            NSArray *childrens = hppleElement.children;
+//
+            NSString *raw = hppleElement.raw;
+            if ((raw.length > 0 || raw != nil) && [raw containsString:@"可播放"]) {
+                [array addObject:raw];
+            }
+        }
+        NSMutableArray *searchData = [NSMutableArray array];
+        
+        for (NSString *item in array) {
+            HYDouBanSearchModel *model = [HYDouBanSearchModel new];
+            
+            NSData *htmlData1 =[item dataUsingEncoding:NSUTF8StringEncoding];
+            TFHpple *xpathParser1 = [[TFHpple alloc]initWithHTMLData:htmlData1];
+
+            //中国大陆 / 剧情 / 犯罪 / Punch Out / The Knockout / 45分钟
+            NSArray *itemArray1 = [xpathParser1 searchWithXPathQuery:@"//div[@class='meta abstract']"];
+            if (itemArray1.count > 0) {
+                TFHppleElement *hppleElement = itemArray1.firstObject;
+                NSLog(@"简介: %@",hppleElement.content);
+                model.brief = hppleElement.content;
+            }
+            
+            
+            NSArray *itemArray2 = [xpathParser1 searchWithXPathQuery:@"//div[@class='meta abstract_2']"];
+            if (itemArray2.count > 0) {
+                TFHppleElement *hppleElement = itemArray2.firstObject;
+                NSLog(@"主演: %@",hppleElement.content);
+                model.actors = hppleElement.content;
+
+            }
+            
+            NSArray *itemArray3 = [xpathParser1 searchWithXPathQuery:@"//span[@class='rating_nums']"];
+            if (itemArray3.count > 0) {
+                TFHppleElement *hppleElement = itemArray3.firstObject;
+                NSLog(@"评分: %@",hppleElement.content);
+                model.rate = hppleElement.content;
+            }
+            
+            NSArray *itemArray5 = [xpathParser1 searchWithXPathQuery:@"//a[@class='title-text']"];
+            if (itemArray5.count > 0) {
+                TFHppleElement *hppleElement = itemArray5.firstObject;
+                NSLog(@"标题: %@",hppleElement.content);
+                model.name = hppleElement.content;
+            }
+            
+            NSArray *itemArray4 = [xpathParser1 searchWithXPathQuery:@"//img[@src]"];
+            if (itemArray4.count > 0) {
+                TFHppleElement *hppleElement = itemArray4.firstObject;
+                
+                NSDictionary *dic = hppleElement.attributes;
+                if ([dic.allKeys containsObject:@"src"]) {
+                    NSLog(@"展示图: %@",dic[@"src"]);
+                    model.pic = dic[@"src"];
+                }
+            }
+            
+            NSArray *itemArray6 = [xpathParser1 searchWithXPathQuery:@"//a[@href]"];
+            if (itemArray6.count > 0) {
+                TFHppleElement *hppleElement = itemArray6.firstObject;
+                NSDictionary *dic = hppleElement.attributes;
+                if ([dic.allKeys containsObject:@"data-moreurl"]) {
+                    NSString *inputString = dic[@"data-moreurl"];
+                    NSString *pattern = @"subject_id:'(\\d+)'"; // 匹配 subject_id 参数的值
+                    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
+                    NSTextCheckingResult *match = [regex firstMatchInString:inputString options:0 range:NSMakeRange(0, inputString.length)];
+
+                    if (match) {
+                        NSRange matchRange = [match rangeAtIndex:1];
+                        NSString *mapValue = [inputString substringWithRange:matchRange];
+//                        NSLog(@"mapValue: %@", mapValue); // 输出: "35465232"
+                        NSLog(@"ID: %@",mapValue);
+                        if (mapValue == nil || mapValue.length == 0) {
+                            continue;
+                        }
+                        model.ID = mapValue;
+
+                    } else {
+                        NSLog(@"No match found.");
+                    }
+                    
+                }
+            }
+            [searchData addObject:model];
+        }
+        
+        if ([self.delegate respondsToSelector:@selector(customView:event:)]) {
+            [self.delegate customView:self event:searchData];
+        }
+    }];
     NSLog(@"didFinishNavigation");
-
 }
 
 //提交发生错误
@@ -220,5 +261,4 @@ static NSString *headUrl = @"https://jx.playerjy.com/?url=";
     }
     return nil;
 }
-
 @end

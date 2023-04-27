@@ -25,5 +25,8 @@
 #import "HYDouBanAFRequestWorking.h"
 #import "HYDouBanYearsModel.h"
 #import "HYDouBanCategeryTempModel.h"
+#import "HYDouBanMovieListModel.h"
+#import "HYDouBanMovieDetailModel.h"
+#import "HYDouBanSearchModel.h"
 
 #endif /* HYVideoHeader_h */

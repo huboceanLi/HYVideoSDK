@@ -13,6 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HYHomeVideoHeadView : HYBaseView
 
+@property (copy, nonatomic) void (^headHeightBlock)(CGFloat headHeight);
+
+@property (copy, nonatomic) void (^movieListBlock)(NSArray *list);
+
 @end
 
 NS_ASSUME_NONNULL_END

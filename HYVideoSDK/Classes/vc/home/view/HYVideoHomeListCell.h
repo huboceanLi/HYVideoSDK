@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HYVideoHomeListCell : HYBaseCollectionViewCell
 
+@property (nonatomic, strong) UIImageView *headImageView;
+@property (nonatomic, strong) UILabel *name;
 
 @end
 

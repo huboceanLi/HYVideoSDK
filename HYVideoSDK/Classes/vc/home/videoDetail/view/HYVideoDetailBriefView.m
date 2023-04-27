@@ -66,9 +66,9 @@
 
 - (void)loadContent
 {
-    HYMovieListItemModel *model = self.data;
-    self.name.text = model.name;
-    self.des.text = model.categorieString;
+    HYDouBanMovieDetailModel *model = self.data;
+    self.name.text = model.title;
+    self.des.text = model.genreString;
 }
 
 
